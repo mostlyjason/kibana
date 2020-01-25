@@ -1,0 +1,31 @@
+[role="xpack"]
+[[ingest-manager]]
+= Ingest Manager
+
+[partintro]
+--
+The Ingest Manager app allows you to configure data ingestion into the Elastic Stack from your applications, services and platforms. It allows you to configure Elastic Agents to ingest data, manage a fleet of Agents, and install packages that make it easier to analyze the data you sent from popular applications. 
+
+[float]
+[[epm-definitions]]
+=== Definitions
+
+This section is to define terms used across ingest management.
+
+[float]
+==== Elastic Agent
+A single, unified agent that users can deploy to hosts or containers. It controls which data is collected from the host or containers and where the data is sent. It will run Beats, Endpoint or other monitoring programs as needed. It can operate standalone or pull a configuration policy from Fleet.
+
+[float]
+==== Namespace
+A user-specified string that will be used to part of the index name in Elasticsearch. It helps users identify logs coming from a specific environment (like prod or test), an application, or other identifiers.
+
+[float]
+==== Package
+
+A package contains all the assets for the Elastic Stack. A more detailed definition of a package can be found under https://github.com/elastic/package-registry.
+
+--
+
+include::{kib-repo-dir}/ingest-manager/epm.asciidoc[]
+include::{kib-repo-dir}/ingest-manager/fleet.asciidoc[]

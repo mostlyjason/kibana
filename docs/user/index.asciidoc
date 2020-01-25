@@ -51,3 +51,5 @@ include::reporting/index.asciidoc[]
 include::api.asciidoc[]
 
 include::plugins.asciidoc[]
+
+include::{kib-repo-dir}/ingest-manager/index.asciidoc[]

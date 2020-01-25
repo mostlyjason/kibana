@@ -2,9 +2,10 @@
 [[epm]]
 == Elastic Package Manager
 
-These are the docs for the Elastic Package Manager (EPM).
+Elastic Package Manager (EPM) is part of the Ingest Manager app in Kibana. It allows you to quickly install packages for popular apps and services including assets for dashboards, saved searches, ingest pipelines and more. This allows you to quickly analyze and visualize data coming from those apps.
 
-
+[float]
+[[epm-configuration]]
 === Configuration
 
 The Elastic Package Manager by default access `epr.elastic.co` to retrieve the package. The url can be configured with:
@@ -13,6 +14,8 @@ The Elastic Package Manager by default access `epr.elastic.co` to retrieve the p
 xpack.epm.registryUrl: 'http://localhost:8080'
 ```
 
+[float]
+[[epm-api]]
 === API
 
 The Package Manager offers an API. The two simplest API endpoints are install and delete.
@@ -32,21 +35,8 @@ curl --user elastic:changeme localhost:5601/api/epm/delete/iptables-1.0.4
 curl --user elastic:changeme localhost:5601/api/epm/delete/coredns-1.0.1
 ```
 
-=== Definitions
-
-This section is to define terms used across ingest management.
-
-==== Elastic Agent
-A single, unified agent that users can deploy to hosts or containers. It controls which data is collected from the host or containers and where the data is sent. It will run Beats, Endpoint or other monitoring programs as needed. It can operate standalone or pull a configuration policy from Fleet.
-
-==== Namespace
-A user-specified string that will be used to part of the index name in Elasticsearch. It helps users identify logs coming from a specific environment (like prod or test), an application, or other identifiers.
-
-==== Package
-
-A package contains all the assets for the Elastic Stack. A more detailed definition of a package can be found under https://github.com/elastic/package-registry .
-
-
+[float]
+[[epm-indexing]]
 == Indexing Strategy
 
 Ingest Management enforces an indexing strategy to allow the system to automically detect indices and run queries on it. In short the indexing strategy looks as following:
@@ -68,7 +58,7 @@ This indexing strategy has a few advantages:
 * Having a global metrics and logs template, allows to create new indices on demand which still follow the convention. This is common in the case of k8s as an example.
 * Constant keywords allow to narrow down the indices we need to access for querying very efficiently. This is especially relevant in environments which a large number of indices or with indices on slower nodes.
 
-
+[float]
 === Templates & ILM Policies
 
 To make the above strategy possible, alias templates are required. For each type there is a basic alias template with a default ILM policy. These default templates apply to all indices which follow the indexing strategy and do not have a more specific dataset alias template. 
@@ -77,6 +67,7 @@ The `metrics` and `logs` alias template contain all the basic fields from ECS.
 
 Each type template contains an ILM policy. Modifying this default ILM policy will affect all data covered by the default templates.
 
+[float]
 === Defaults
 
 If the Elastic Agent is used to ingest data and only the type is specified, `default` for the namespace is used and `generic` for the dataset.

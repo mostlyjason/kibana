@@ -1,0 +1,5 @@
+[role="xpack"]
+[[fleet]]
+== Fleet
+
+The Ingest Manager app allows you to manage fleets of Agents. You can see the status of agents across your hosts, group them by environment or custom namespace, and apply configurations to the Agents.
